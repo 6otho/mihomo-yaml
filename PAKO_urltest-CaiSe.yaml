@@ -1,0 +1,497 @@
+# PAKO_urltest-CaiSe
+metadata:
+  version: "2025.06"
+  updated: "2025-06"
+owner: "PAKO"
+note: "urltest-CaiSe-icon"
+mixed-port: 7897
+allow-lan: true
+mode: rule
+global-ua: clash-verge/v2.2.3
+geodata-mode: true
+geodata-loader: standard
+unified-delay: true
+log-level: warning
+ipv6: true
+external-controller: 127.0.0.1:9090
+tcp-concurrent: true
+enable-process: true
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-interval: 15
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+profile:
+  store-selected: true
+  store-fake-ip: true
+tun:
+  enable: false
+  device: ClashVergeREV
+  stack: mixed
+  mtu: 1500
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-detect-interface: true
+dns:
+  enable: true
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - 114.114.114.114
+    - system
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "connect.rom.miui.com"
+    - "+.miwifi.com"
+    - "+.ntp.org"
+    - "+.u-tools.cn"
+    - "+.mediatek.com"
+    - "+.cfprefer1.xyz"
+    - "+.wetab.link"
+    - "+.tyasaka.xyz"
+    # QQ
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+    # WeChat
+    - "localhost.work.weixin.qq.com"
+    - "+.weixin.qq.com"
+    - "+.wechat.com"
+    # Windows
+    - "time.windows.com"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "+.wpsmail.net"
+    - "+.henzanapp.com"
+    - "+.pconline.com.cn"
+    
+rule-providers:
+  private:
+    url: https://gh.iknn.eu.org/https://https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
+    path: ./ruleset/private.yaml
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  cn_domain:
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml
+    path: ./ruleset/cn_domain.yaml
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  douyin_domain:
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml
+    path: ./ruleset/douyin_domain.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  Spotify_domain:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
+    path: ./ruleset/Spotify_domain.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  youtube_domain:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
+    path: ./ruleset/youtube_domain.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  telegram_domain:
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.yaml
+    path: ./ruleset/telegram_domain.yaml
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  google_domain:
+    url: https://ghfast.top/https://raw.githubusercontent.com/6otho/Yaml-PaKo/refs/heads/main/google.yaml
+    path: ./ruleset/google_domain.yaml
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  geolocation-!cn:
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
+    path: ./ruleset/geolocation-!cn.yaml
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  cn_ip:
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml
+    path: ./ruleset/cn_ip.yaml
+    behavior: ipcidr
+    interval: 86400
+    format: yaml
+    type: http
+  telegram_ip:
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml
+    path: ./ruleset/telegram_ip.yaml
+    behavior: ipcidr
+    interval: 86400
+    format: yaml
+    type: http
+  google_ip:
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
+    path: ./ruleset/google_ip.yaml
+    behavior: ipcidr
+    interval: 86400
+    format: yaml
+    type: http
+  bing:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml
+    path: ./ruleset/bing.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  copilot:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml
+    path: ./ruleset/copilot.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  claude:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml
+    path: ./ruleset/claude.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  bard:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml
+    path: ./ruleset/bard.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  openai:
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/6otho/Yaml-PaKo/refs/heads/main/allAi.yaml
+    path: ./ruleset/openai.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  steam:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
+    path: ./ruleset/steam.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  netflix_domain:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
+    path: ./ruleset/netflix_domain.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  emby_domain:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml
+    path: ./ruleset/emby_domain.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+  dns_leak:
+    type: http
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/Rule/Prevent_DNS_Leaks.list
+    path: ./ruleset/dns_leak.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+  tiktok:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@refs/heads/master/rule/Clash/TikTok/TikTok.yaml
+    path: ./ruleset/tiktok.yaml
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
+
+proxy-groups:
+  #- icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/loonxsss.png
+  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/02ProxySoftLogo/Loon.png
+    include-all: true
+    name: 手動選擇
+    type: select
+    max-failed-times: 3
+    proxies:
+      - 日本自動
+      - 新國自動
+      - 香港自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 自動選擇
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(2).png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: 自動選擇
+    type: url-test
+    interval: 300
+    max-failed-times: 3
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/icons/apps/ChatGPT4.png
+    name: 智能工具
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 手動選擇
+      - 自動選擇
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
+    name: 電報聊天
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 香港自動
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/google(2).png
+    name: 谷歌搜索
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 香港自動
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 全球手動
+  - icon: https://gh-proxy.com/raw.githubusercontent.com/Orz-3/mini/master/Color/Spotify.png
+    name: 聲田音樂
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 香港自動
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/netflix(old).png
+    name: 奈飛電影
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 香港自動
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/tiktok(1).png
+    name: 外區抖音
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 香港自動
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/youtube(3).png
+    name: 油管軟件
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 香港自動
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/game(3).png
+    name: 游戲軟件
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - DIRECT
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 全球手動
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/taiwan(1).png
+    name: 中國直連
+    type: select
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - DIRECT
+      - 手動選擇
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 台灣自動
+      - 全球手動
+
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Hongkong.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?:\b(香港|HK|HKG|Hong\s*Kong)\b|🇭🇰)
+    name: 香港自動
+    type: url-test
+    interval: 300
+    lazy: false
+    max-failed-times: 3
+    tolerance: 50
+    url: http://www.msftconnecttest.com/connecttest.txt
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/taiwan(3).png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?:\b(台湾|TaiWan|TW)\b|🇹🇼)
+    name: 台灣自動
+    type: url-test
+    interval: 300
+    lazy: false
+    max-failed-times: 3
+    tolerance: 50
+    url: http://www.msftconnecttest.com/connecttest.txt
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/singapore(1).png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?:\b(新加坡|Singapore|SGP)\b|🇸🇬)
+    name: 新國自動
+    type: url-test
+    interval: 300
+    lazy: false
+    max-failed-times: 3
+    tolerance: 50
+    url: http://www.msftconnecttest.com/connecttest.txt
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Japan.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?:\b(日本|Japan|JPN)\b|🇯🇵)
+    name: 日本自動
+    type: url-test
+    interval: 300
+    lazy: false
+    max-failed-times: 3
+    tolerance: 50
+    url: http://www.msftconnecttest.com/connecttest.txt
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/US.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?:\b(美國|USA|United\s*States|US)\b|🇺🇸)
+    name: 美國自動
+    type: url-test
+    interval: 300
+    lazy: false
+    max-failed-times: 3
+    tolerance: 50
+    url: http://www.msftconnecttest.com/connecttest.txt
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Korea.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)(?:\b(韓國|South\s*Korea|KOR)\b|🇰🇷)
+    name: 韓國自動
+    type: url-test
+    interval: 300
+    lazy: false
+    max-failed-times: 3
+    tolerance: 50
+    url: http://www.msftconnecttest.com/connecttest.txt
+  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/EuropeanUnion(1).png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美國|USA|United\s*States|US|香港|HK|HKG|韓國|South\s*Korea|KOR)).+$
+    name: 全球手動
+    type: select
+    interval: 300
+    max-failed-times: 3
+ 
+rules:
+  # emby自用域名
+  - "DOMAIN-SUFFIX,shsiis.cloudfisher.cc,手動選擇"
+  - "DOMAIN-SUFFIX,emby.zn.al,手動選擇"
+  - "DOMAIN-SUFFIX,lite.saturdayvideo.top,手動選擇"
+  - "DOMAIN-SUFFIX,agedm.org,手動選擇"
+  - "DOMAIN-SUFFIX,vidhub1.cc,手動選擇"
+  - "DOMAIN-SUFFIX,lite.cn2gias.uk,手動選擇"
+  - "DOMAIN-SUFFIX,emos.lol,手動選擇"
+  - "DOMAIN-SUFFIX,emby.wenjian.de,手動選擇"
+  - "DOMAIN-SUFFIX,emby.hohai.eu.org,手動選擇"
+  - "DOMAIN-SUFFIX,emby.bangumi.ca,手動選擇"
+  - "DOMAIN-SUFFIX,public.shrekmedia.org,手動選擇"
+  
+  - "DOMAIN-SUFFIX,cloudflare.com,中國直連"
+  - "DOMAIN-SUFFIX,github.com,手動選擇"
+  - "DOMAIN-SUFFIX,subr.v5oo.eu.org,手動選擇"
+  - "DOMAIN-SUFFIX,gemini.google.com,智能工具"
+  - "DOMAIN-SUFFIX,douyin.com,DIRECT"
+  - "RULE-SET,douyin_domain,中國直連"
+  - "DOMAIN,domainname,手動選擇"
+  - "RULE-SET,Spotify_domain,聲田音樂"
+  - "RULE-SET,youtube_domain,油管軟件"
+  - "RULE-SET,tiktok,外區抖音"
+  - "DOMAIN-SUFFIX,speedtest.net,手動選擇"
+  - "RULE-SET,copilot,智能工具"
+  - "RULE-SET,claude,智能工具"
+  - "RULE-SET,bard,智能工具"
+  - "RULE-SET,openai,智能工具"
+  - "DOMAIN-SUFFIX,chat.openai.com,智能工具"
+  - "DOMAIN-SUFFIX,chatgpt.com,智能工具"
+  - "DOMAIN-SUFFIX,api.openai.com,智能工具"
+  - "DOMAIN-SUFFIX,auth0.com,智能工具"
+  - "RULE-SET,google_domain,谷歌搜索"
+  - "RULE-SET,google_ip,谷歌搜索"
+  - "RULE-SET,telegram_domain,電報聊天"
+  - "RULE-SET,telegram_ip,電報聊天"
+  - "RULE-SET,private,手動選擇"
+  - "RULE-SET,netflix_domain,奈飛電影"
+  - "RULE-SET,emby_domain,奈飛電影"
+  - "RULE-SET,bing,谷歌搜索"
+  - "RULE-SET,steam,游戲軟件"
+  - "RULE-SET,geolocation-!cn,手動選擇"
+  - "RULE-SET,cn_domain,中國直連"
+  - "RULE-SET,cn_ip,中國直連"
+  - "RULE-SET,dns_leak,手動選擇"
+  - "MATCH,手動選擇"
