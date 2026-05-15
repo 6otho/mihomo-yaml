@@ -258,7 +258,8 @@ rule-providers:
 proxy-groups:
   - name: 手动选择
     type: select
-    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/main/icon/djjc01.png
+   #icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
     include-all: true
     interval: 300
     max-failed-times: 3
