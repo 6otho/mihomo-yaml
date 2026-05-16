@@ -513,8 +513,8 @@ rules:
   
   # === 基础及常规应用分流 ===
   - "DOMAIN-SUFFIX,cloudflare.com,DIRECT"
-  - "RULE-SET,douyin_domain,DIRECT"
-  - "DOMAIN-KEYWORD,vidhub,DIRECT"
+  - "RULE-SET,douyin_domain,中国直连"
+  - "DOMAIN-KEYWORD,vidhub,中国直连"
   - "DOMAIN,domainname,手动选择"
   - "RULE-SET,Spotify_domain,声田音乐"
   - "RULE-SET,youtube_domain,油管视频"
@@ -534,8 +534,8 @@ rules:
   
   # === 兜底及其他规则 ===
   - "RULE-SET,geolocation-!cn,手动选择"
-  - "RULE-SET,cn_domain,DIRECT"
-  - "RULE-SET,cn_ip,DIRECT"
+  - "RULE-SET,cn_domain,中国直连"
+  - "RULE-SET,cn_ip,中国直连"
   - "RULE-SET,dns_leak,手动选择"
-  - "GEOIP,CN,DIRECT"
+  - "GEOIP,CN,中国直连"
   - "MATCH,手动选择"
