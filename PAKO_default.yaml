@@ -516,7 +516,7 @@ rules:
 
   # === 安全优化：通过基础经典规则提权保障抖音/字节 CDN 直连，100% 兼容老内核 ===
   - "DOMAIN-KEYWORD,bytedance,中国直连"
-  - "DOMAIN-KEYWORD,byteimg,中国直连接"
+  - "DOMAIN-KEYWORD,byteimg,中国直连"
   - "DOMAIN-KEYWORD,bytegecko,中国直连"
   - "DOMAIN-KEYWORD,pstatp,中国直连"
   - "DOMAIN-KEYWORD,ibyteimg,中国直连"
