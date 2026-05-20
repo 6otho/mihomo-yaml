@@ -21,6 +21,22 @@ global-client-fingerprint: chrome
 keep-alive-interval: 15
 geo-auto-update: true
 geo-update-interval: 24
+
+# === 新增：流量嗅探，用于精准识别抖音等移动端后台域名 ===
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    QUIC:
+      ports: [443, 8443]
+
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
@@ -39,17 +55,27 @@ tun:
     - "tcp://any:53"
   auto-route: true
   auto-detect-interface: true
+
 dns:
   enable: true
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
+  respect-rules: true # 优先按规则匹配分流
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - 114.114.114.114
     - system
+  # === 新增：绑定国内与字节跳动 CDN 域名走国内 DNS，获得最优 CDN 节点 ===
+  nameserver-policy:
+    "geosite:cn,private":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.bytedance.com,+.byteimg.com,+.bytegecko.com,+.pstatp.com,+.snssdk.com,+.amemv.com,+.volces.com":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
   fake-ip-filter:
     - "*"
     - "+.lan"
@@ -450,7 +476,18 @@ rules:
   - "DOMAIN,fandai.ikuu.cc.cd,DIRECT"
   - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
   - "DOMAIN,emos.idaa.eu.org,DIRECT"
+
+  # === 优化：抖音/字节系 CDN 规则提权强制走 MAINLAND ===
+  - "DOMAIN-KEYWORD,bytedance,MAINLAND"
+  - "DOMAIN-KEYWORD,byteimg,MAINLAND"
+  - "DOMAIN-KEYWORD,bytegecko,MAINLAND"
+  - "DOMAIN-KEYWORD,pstatp,MAINLAND"
+  - "DOMAIN-KEYWORD,ibyteimg,MAINLAND"
+  - "DOMAIN-KEYWORD,volces,MAINLAND"
+  - "DOMAIN-SUFFIX,snssdk.com,MAINLAND"
+  - "DOMAIN-SUFFIX,amemv.com,MAINLAND"
   - "RULE-SET,douyin_domain,MAINLAND"
+
   - "DOMAIN,agedm.org,DIRECT"
   - "DOMAIN,vidhub1.cc,FINAL"
   - "DOMAIN,lite.saturdayvideo.top,EMBY"
@@ -483,4 +520,3 @@ rules:
   - "RULE-SET,dns_leak,FINAL"
   - "GEOIP,CN,MAINLAND"
   - "MATCH,FINAL"
-  
