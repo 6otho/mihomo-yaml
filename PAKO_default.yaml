@@ -80,7 +80,7 @@ dns:
     - "+.wpsmail.net"
     - "+.henzanapp.com"
     - "+.pconline.com.cn"
-    # === Steam Fake-IP 黑名单 ===
+    # === 新增：Steam Fake-IP 黑名单 ===
     - "+.steamcontent.com"
     - "+.steampowered.com"
     - "+.steamserver.net"
@@ -504,7 +504,7 @@ rules:
   - "DOMAIN-SUFFIX,chatgpt.com,智能AI"
   - "DOMAIN-SUFFIX,api.openai.com,智能AI"
   - "DOMAIN-SUFFIX,auth0.com,智能AI"
-  # Gemini 相关的规则，确保优先分流到智能AI
+  # 新增 Gemini 相关的规则，确保优先分流到智能AI
   - "DOMAIN-KEYWORD,gemini.google,智能AI"
   - "DOMAIN-SUFFIX,gemini.google.com,智能AI"
   - "DOMAIN-SUFFIX,ai.google.com,智能AI"
@@ -513,18 +513,7 @@ rules:
   
   # === 基础及常规应用分流 ===
   - "DOMAIN-SUFFIX,cloudflare.com,DIRECT"
-
-  # === 安全优化：通过基础经典规则提权保障抖音/字节 CDN 直连，100% 兼容老内核 ===
-  - "DOMAIN-KEYWORD,bytedance,中国直连"
-  - "DOMAIN-KEYWORD,byteimg,中国直连"
-  - "DOMAIN-KEYWORD,bytegecko,中国直连"
-  - "DOMAIN-KEYWORD,pstatp,中国直连"
-  - "DOMAIN-KEYWORD,ibyteimg,中国直连"
-  - "DOMAIN-KEYWORD,volces,中国直连"
-  - "DOMAIN-SUFFIX,snssdk.com,中国直连"
-  - "DOMAIN-SUFFIX,amemv.com,中国直连"
   - "RULE-SET,douyin_domain,中国直连"
-  
   - "DOMAIN-KEYWORD,vidhub,中国直连"
   - "DOMAIN,domainname,手动选择"
   - "RULE-SET,Spotify_domain,声田音乐"
