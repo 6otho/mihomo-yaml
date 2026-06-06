@@ -493,6 +493,9 @@ rules:
   - "DOMAIN-SUFFIX,cm.steampowered.com,DIRECT"
   - "RULE-SET,steamCN,DIRECT"
   - "RULE-SET,download,DIRECT"
+  - "DOMAIN,fandai.ikuu.cc.cd,DIRECT"
+  - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
+  - "DOMAIN,emos.idaa.eu.org,DIRECT"
 
   # === 智能AI分流规则 - 最高优先级 ===
   - "RULE-SET,gemini_domain,智能AI"
