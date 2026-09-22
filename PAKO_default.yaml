@@ -17,7 +17,7 @@ allow-lan: false
 bind-address: '*'
 external-controller: 127.0.0.1:9090
 
-# iOS/tvOS 规范：memconservative 加载器
+# iOS/tvOS 官方推荐加载器
 geodata-loader: memconservative
 
 dns:
@@ -71,7 +71,7 @@ dns:
     - "+.steamserver.net"
 
 # =========================================================================
-# 📦 全部规则集完整保留 (替换为高可用公共 CDN，彻底解决规则加载卡死)
+# 📦 全部规则集原样保留 (采用高可用镜像源，防止规则模式阻塞卡死小组件)
 # =========================================================================
 rule-providers:
   private:
@@ -259,10 +259,9 @@ rule-providers:
     path: ./ruleset/Download.list
 
 # =========================================================================
-# 🎛️ 策略组：原样完整保留，节点直接平铺进主策略组，小组件秒级识别
+# 🎛️ 策略组：原样完整保留，{all} 占位由 Worker 严格平铺替换
 # =========================================================================
 proxy-groups:
-  # 🌟 手动选择：作为第一组和 MATCH 兜底组。{all} 会被 Worker 自动平铺为所有实体节点！
   - name: 手动选择
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
