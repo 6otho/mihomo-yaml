@@ -1,13 +1,16 @@
-# ==========================================
-# 🌟 PAKO 全规则分流完整版 (严格遵循 clash.md 官方规范)
-# ==========================================
+# PAKO
+metadata:
+  version: "2026.04"
+  owner: "PAKO"
+  note: "Hako / Mihomo Universal"
+
 mode: rule
 log-level: info
 ipv6: false
 unified-delay: true
 tcp-concurrent: true
 
-# 遵循 clash.md 规范：保存策略选择与 Fake-IP 缓存（小组件读取核心）
+# 必须为 true，小组件在规则模式下才能读取并保存当前选择的节点
 profile:
   store-selected: true
   store-fake-ip: true
@@ -16,8 +19,6 @@ mixed-port: 7890
 allow-lan: false
 bind-address: '*'
 external-controller: 127.0.0.1:9090
-
-# iOS/tvOS 官方推荐加载器
 geodata-loader: memconservative
 
 dns:
@@ -31,28 +32,10 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - 114.114.114.114
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
-  fallback:
-    - 1.1.1.1
-    - 8.8.8.8
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
   fake-ip-filter:
     - "+.lan"
     - "+.local"
@@ -70,9 +53,6 @@ dns:
     - "+.steampowered.com"
     - "+.steamserver.net"
 
-# =========================================================================
-# 📦 全部规则集原样保留 (采用高可用镜像源，防止规则模式阻塞卡死小组件)
-# =========================================================================
 rule-providers:
   private:
     type: http
@@ -106,38 +86,6 @@ rule-providers:
     url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
     path: ./ruleset/gemini_domain.yaml
 
-  openai:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
-    path: ./ruleset/openai.yaml
-
-  claude:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
-    path: ./ruleset/claude.yaml
-
-  copilot:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml"
-    path: ./ruleset/copilot.yaml
-
-  bard:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml"
-    path: ./ruleset/bard.yaml
-
   douyin_domain:
     type: http
     behavior: classical
@@ -170,14 +118,6 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.yaml"
     path: ./ruleset/telegram_domain.yaml
 
-  telegram_ip:
-    type: http
-    behavior: ipcidr
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml"
-    path: ./ruleset/telegram_ip.yaml
-
   google_domain:
     type: http
     behavior: domain
@@ -186,6 +126,22 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.yaml"
     path: ./ruleset/google_domain.yaml
 
+  geolocation-!cn:
+    type: http
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml"
+    path: ./ruleset/geolocation-!cn.yaml
+
+  telegram_ip:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    interval: 86400
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml"
+    path: ./ruleset/telegram_ip.yaml
+
   google_ip:
     type: http
     behavior: ipcidr
@@ -193,6 +149,54 @@ rule-providers:
     interval: 86400
     url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml"
     path: ./ruleset/google_ip.yaml
+
+  bing:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml"
+    path: ./ruleset/bing.yaml
+
+  copilot:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml"
+    path: ./ruleset/copilot.yaml
+
+  claude:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
+    path: ./ruleset/claude.yaml
+
+  bard:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml"
+    path: ./ruleset/bard.yaml
+
+  openai:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./ruleset/openai.yaml
+
+  steam:
+    type: http
+    behavior: classical
+    format: text
+    interval: 86400
+    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list"
+    path: ./ruleset/Steam.list
 
   netflix_domain:
     type: http
@@ -218,30 +222,6 @@ rule-providers:
     url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml"
     path: ./ruleset/tiktok.yaml
 
-  bing:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml"
-    path: ./ruleset/bing.yaml
-
-  geolocation-!cn:
-    type: http
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml"
-    path: ./ruleset/geolocation-!cn.yaml
-
-  steam:
-    type: http
-    behavior: classical
-    format: text
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list"
-    path: ./ruleset/Steam.list
-
   steamCN:
     type: http
     behavior: classical
@@ -258,13 +238,11 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
     path: ./ruleset/Download.list
 
-# =========================================================================
-# 🎛️ 策略组：原样完整保留，{all} 占位由 Worker 严格平铺替换
-# =========================================================================
 proxy-groups:
   - name: 手动选择
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+    include-all: true
     proxies:
       - 自动选择
       - 香港自动
@@ -274,16 +252,14 @@ proxy-groups:
       - 美国自动
       - 韩国自动
       - 全球自动
-      - "{all}"
 
   - name: 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    include-all: true
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
     interval: 300
-    tolerance: 50
-    proxies:
-      - "{all}"
 
   - name: 电报聊天
     type: select
@@ -303,10 +279,10 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/03CNSoft/AppleIntelligence.png
     proxies:
       - 手动选择
-      - 美国自动
-      - 日本自动
       - 新国自动
       - 台湾自动
+      - 日本自动
+      - 美国自动
       - 韩国自动
       - 自动选择
       - 全球自动
@@ -473,17 +449,12 @@ proxy-groups:
     proxies:
       - DIRECT
 
-# =========================================================================
-# 🚦 规则列表：全部完整保留
-# =========================================================================
 rules:
-  # === 最优先：修复 Steam 下载环境 ===
   - "DOMAIN-SUFFIX,steamserver.net,DIRECT"
   - "DOMAIN-SUFFIX,cm.steampowered.com,DIRECT"
   - "RULE-SET,steamCN,DIRECT"
   - "RULE-SET,download,DIRECT"
 
-  # === 智能AI分流规则 - 最高优先级 ===
   - "RULE-SET,gemini_domain,智能AI"
   - "RULE-SET,copilot,智能AI"
   - "RULE-SET,claude,智能AI"
@@ -501,7 +472,6 @@ rules:
   - "DOMAIN-SUFFIX,generativelanguage.googleapis.com,智能AI"
   - "DOMAIN-SUFFIX,bard.google.com,智能AI"
 
-  # === 基础及常规应用分流 ===
   - "DOMAIN-SUFFIX,cloudflare.com,手动选择"
   - "RULE-SET,douyin_domain,中国直连"
   - "DOMAIN-KEYWORD,vidhub,中国直连"
@@ -518,10 +488,8 @@ rules:
   - "RULE-SET,emby_domain,奈飞电影"
   - "RULE-SET,bing,谷歌搜索"
 
-  # === 全局 Steam 规则 ===
   - "RULE-SET,steam,游戏软件"
 
-  # === 兜底及其他规则 ===
   - "RULE-SET,geolocation-!cn,手动选择"
   - "RULE-SET,cn_domain,中国直连"
   - "RULE-SET,cn_ip,中国直连"
