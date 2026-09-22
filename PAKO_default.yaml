@@ -1,33 +1,24 @@
 # ==========================================
-# 🌟 PAKO 全规则分流完整版 (专配 Hako 小组件直读)
+# 🌟 PAKO 全规则分流完整版 (严格遵循 clash.md 官方规范)
 # ==========================================
-metadata:
-  version: "2026.04"
-  owner: "PAKO"
-  note: "Hako Widget Rule Mode Fully Supported"
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+
+# 遵循 clash.md 规范：保存策略选择与 Fake-IP 缓存（小组件读取核心）
+profile:
+  store-selected: true
+  store-fake-ip: true
 
 mixed-port: 7890
 allow-lan: false
 bind-address: '*'
-mode: rule
-log-level: info
-unified-delay: true
-tcp-concurrent: true
-ipv6: false
 external-controller: 127.0.0.1:9090
 
-# 优化内存，防止 iOS 闪退
-geodata-mode: false
+# iOS/tvOS 规范：memconservative 加载器
 geodata-loader: memconservative
-geo-auto-update: true
-geo-update-interval: 24
-
-find-process-mode: off
-sniffing: true
-
-profile:
-  store-selected: true
-  store-fake-ip: false
 
 dns:
   enable: true
@@ -48,6 +39,20 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
+  fallback:
+    - 1.1.1.1
+    - 8.8.8.8
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
   fake-ip-filter:
     - "+.lan"
     - "+.local"
@@ -66,7 +71,7 @@ dns:
     - "+.steamserver.net"
 
 # =========================================================================
-# 📦 全部规则集原样保留 (采用高可用镜像源，防止规则模式阻塞卡死小组件)
+# 📦 全部规则集完整保留 (替换为高可用公共 CDN，彻底解决规则加载卡死)
 # =========================================================================
 rule-providers:
   private:
@@ -254,7 +259,7 @@ rule-providers:
     path: ./ruleset/Download.list
 
 # =========================================================================
-# 🎛️ 策略组：原样完整保留，主组直接平铺节点，彻底解决小组件规则模式空白
+# 🎛️ 策略组：原样完整保留，节点直接平铺进主策略组，小组件秒级识别
 # =========================================================================
 proxy-groups:
   # 🌟 手动选择：作为第一组和 MATCH 兜底组。{all} 会被 Worker 自动平铺为所有实体节点！
@@ -392,7 +397,6 @@ proxy-groups:
       - DIRECT
       - 手动选择
 
-  # 区域分组：增加 DIRECT 兜底，防止当前机场缺少某些地区时组变空导致小组件报错
   - name: 香港自动
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -471,7 +475,7 @@ proxy-groups:
       - DIRECT
 
 # =========================================================================
-# 🚦 规则列表：全部无删减保留
+# 🚦 规则列表：全部完整保留
 # =========================================================================
 rules:
   # === 最优先：修复 Steam 下载环境 ===
