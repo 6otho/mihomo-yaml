@@ -1,13 +1,14 @@
 # ==========================================
-# 🌟 PAKO 全分流无损完整优化版 (适配 Hako / Mihomo 全平台)
+# 🌟 PAKO 全规则分流完整版 (专配 Hako 小组件直读)
 # ==========================================
 metadata:
   version: "2026.04"
   owner: "PAKO"
-  note: "Hako Widget Optimized & Full Routing Preserved"
+  note: "Hako Widget Rule Mode Fully Supported"
 
 mixed-port: 7890
 allow-lan: false
+bind-address: '*'
 mode: rule
 log-level: info
 unified-delay: true
@@ -15,7 +16,7 @@ tcp-concurrent: true
 ipv6: false
 external-controller: 127.0.0.1:9090
 
-# 针对 iOS NetworkExtension 内存安全优化
+# 优化内存，防止 iOS 闪退
 geodata-mode: false
 geodata-loader: memconservative
 geo-auto-update: true
@@ -34,8 +35,12 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
-  # 引导 DNS：杜绝冷启动死锁
+  respect-rules: true
   default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
+  proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
@@ -43,7 +48,6 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
-  # 严禁在此处加入 "*"，保留精准放行名单
   fake-ip-filter:
     - "+.lan"
     - "+.local"
@@ -62,7 +66,7 @@ dns:
     - "+.steamserver.net"
 
 # =========================================================================
-# 📦 规则集：全部保留，修复 Behavior 与可靠 CDN 源，杜绝加载超时卡死小组件
+# 📦 全部规则集原样保留 (采用高可用镜像源，防止规则模式阻塞卡死小组件)
 # =========================================================================
 rule-providers:
   private:
@@ -250,15 +254,13 @@ rule-providers:
     path: ./ruleset/Download.list
 
 # =========================================================================
-# 🎛️ 策略组：原样完整保留，并做空组防崩与小组件直读支持
+# 🎛️ 策略组：原样完整保留，主组直接平铺节点，彻底解决小组件规则模式空白
 # =========================================================================
 proxy-groups:
-  # 🌟 手动选择：排在第一位，直接供 iOS 小组件识别当前选中的真实节点
+  # 🌟 手动选择：作为第一组和 MATCH 兜底组。{all} 会被 Worker 自动平铺为所有实体节点！
   - name: 手动选择
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
-    include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
     proxies:
       - 自动选择
       - 香港自动
@@ -268,15 +270,16 @@ proxy-groups:
       - 美国自动
       - 韩国自动
       - 全球自动
+      - "{all}"
 
   - name: 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-    include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
     interval: 300
     tolerance: 50
+    proxies:
+      - "{all}"
 
   - name: 电报聊天
     type: select
@@ -389,7 +392,7 @@ proxy-groups:
       - DIRECT
       - 手动选择
 
-  # 💡 区域自动组均保留 DIRECT 兜底，防止当前机场缺少某些地区时产生空组搞崩小组件
+  # 区域分组：增加 DIRECT 兜底，防止当前机场缺少某些地区时组变空导致小组件报错
   - name: 香港自动
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -468,7 +471,7 @@ proxy-groups:
       - DIRECT
 
 # =========================================================================
-# 🚦 分流规则：完整无损保留原规则序列
+# 🚦 规则列表：全部无删减保留
 # =========================================================================
 rules:
   # === 最优先：修复 Steam 下载环境 ===
