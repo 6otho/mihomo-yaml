@@ -2,23 +2,22 @@
 metadata:
   version: "2026.04"
   owner: "PAKO"
-  note: "Hako / Mihomo Universal"
+  note: "urltest"
 
+mixed-port: 7890
+allow-lan: false
 mode: rule
 log-level: info
 ipv6: false
 unified-delay: true
 tcp-concurrent: true
+external-controller: 127.0.0.1:9090
 
-# 必须为 true，小组件在规则模式下才能读取并保存当前选择的节点
+# 🌟 必须为 true，小组件在规则模式下才能读取并显示当前选中的节点！
 profile:
   store-selected: true
   store-fake-ip: true
 
-mixed-port: 7890
-allow-lan: false
-bind-address: '*'
-external-controller: 127.0.0.1:9090
 geodata-loader: memconservative
 
 dns:
@@ -32,217 +31,221 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
+  fallback:
+    - 1.1.1.1
+    - 8.8.8.8
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
   fake-ip-filter:
     - "+.lan"
-    - "+.local"
     - "connect.rom.miui.com"
     - "+.miwifi.com"
     - "+.ntp.org"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "time.windows.com"
+    - "+.u-tools.cn"
+    - "+.mediatek.com"
+    - "+.cfprefer1.xyz"
+    - "+.wetab.link"
+    - "+.tyasaka.xyz"
     - "localhost.ptlogin2.qq.com"
     - "localhost.sec.qq.com"
+    - "localhost.work.weixin.qq.com"
     - "+.weixin.qq.com"
     - "+.wechat.com"
+    - "time.windows.com"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "+.wpsmail.net"
+    - "+.henzanapp.com"
+    - "+.pconline.com.cn"
     - "+.steamcontent.com"
     - "+.steampowered.com"
     - "+.steamserver.net"
 
 rule-providers:
   private:
-    type: http
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.yaml"
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.yaml
     path: ./ruleset/private.yaml
-
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
   cn_domain:
-    type: http
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.yaml"
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.yaml
     path: ./ruleset/cn_domain.yaml
-
-  cn_ip:
-    type: http
-    behavior: ipcidr
-    format: yaml
+    behavior: domain
     interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.yaml"
-    path: ./ruleset/cn_ip.yaml
-
+    format: yaml
+    type: http
   gemini_domain:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml
     path: ./ruleset/gemini_domain.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   douyin_domain:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/DouYin/DouYin.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/DouYin/DouYin.yaml
     path: ./ruleset/douyin_domain.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   Spotify_domain:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
     path: ./ruleset/Spotify_domain.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   youtube_domain:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
     path: ./ruleset/youtube_domain.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   telegram_domain:
-    type: http
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.yaml"
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.yaml
     path: ./ruleset/telegram_domain.yaml
-
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
   google_domain:
-    type: http
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.yaml"
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.yaml
     path: ./ruleset/google_domain.yaml
-
-  geolocation-!cn:
-    type: http
     behavior: domain
-    format: yaml
     interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml"
+    format: yaml
+    type: http
+  geolocation-!cn:
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml
     path: ./ruleset/geolocation-!cn.yaml
-
+    behavior: domain
+    interval: 86400
+    format: yaml
+    type: http
+  cn_ip:
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.yaml
+    path: ./ruleset/cn_ip.yaml
+    behavior: ipcidr
+    interval: 86400
+    format: yaml
+    type: http
   telegram_ip:
-    type: http
-    behavior: ipcidr
-    format: yaml
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml"
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml
     path: ./ruleset/telegram_ip.yaml
-
-  google_ip:
-    type: http
     behavior: ipcidr
-    format: yaml
     interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml"
+    format: yaml
+    type: http
+  google_ip:
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml
     path: ./ruleset/google_ip.yaml
-
+    behavior: ipcidr
+    interval: 86400
+    format: yaml
+    type: http
   bing:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml
     path: ./ruleset/bing.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   copilot:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml
     path: ./ruleset/copilot.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   claude:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml
     path: ./ruleset/claude.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   bard:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml
     path: ./ruleset/bard.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   openai:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
     path: ./ruleset/openai.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   steam:
-    type: http
-    behavior: classical
-    format: text
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list"
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list
     path: ./ruleset/Steam.list
-
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
   netflix_domain:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
     path: ./ruleset/netflix_domain.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   emby_domain:
-    type: http
-    behavior: classical
-    format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml"
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml
     path: ./ruleset/emby_domain.yaml
-
-  tiktok:
-    type: http
     behavior: classical
+    interval: 86400
     format: yaml
-    interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml"
+    type: http
+  tiktok:
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@refs/heads/master/rule/Clash/TikTok/TikTok.yaml
     path: ./ruleset/tiktok.yaml
-
+    behavior: classical
+    interval: 86400
+    format: yaml
+    type: http
   steamCN:
-    type: http
-    behavior: classical
-    format: text
-    interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/SteamCN.list"
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/SteamCN.list
     path: ./ruleset/SteamCN.list
-
-  download:
-    type: http
     behavior: classical
-    format: text
     interval: 86400
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
+    format: text
+    type: http
+  download:
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list
     path: ./ruleset/Download.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
 
 proxy-groups:
+  # 🌟 手动选择：加了 - {all}，Worker 会自动把所有真实节点平铺写到这里，小组件选哪个就能直接显示哪个！
   - name: 手动选择
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
-    include-all: true
     proxies:
       - 自动选择
       - 香港自动
@@ -252,6 +255,7 @@ proxy-groups:
       - 美国自动
       - 韩国自动
       - 全球自动
+      - {all}
 
   - name: 自动选择
     type: url-test
@@ -260,10 +264,13 @@ proxy-groups:
     include-all: true
     exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
     interval: 300
+    max-failed-times: 3
 
   - name: 电报聊天
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 香港自动
@@ -277,6 +284,8 @@ proxy-groups:
   - name: 智能AI
     type: select
     icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/03CNSoft/AppleIntelligence.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 新国自动
@@ -290,6 +299,8 @@ proxy-groups:
   - name: 谷歌搜索
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 香港自动
@@ -303,6 +314,8 @@ proxy-groups:
   - name: 声田音乐
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 香港自动
@@ -316,6 +329,8 @@ proxy-groups:
   - name: 奈飞电影
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix_Letter.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 香港自动
@@ -329,6 +344,8 @@ proxy-groups:
   - name: 外区抖音
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 香港自动
@@ -342,6 +359,8 @@ proxy-groups:
   - name: 油管视频
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - 手动选择
       - 香港自动
@@ -355,9 +374,11 @@ proxy-groups:
   - name: 游戏软件
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Steam.png
+    interval: 300
+    max-failed-times: 3
     proxies:
-      - DIRECT
       - 手动选择
+      - DIRECT
       - 新国自动
       - 台湾自动
       - 日本自动
@@ -368,93 +389,99 @@ proxy-groups:
   - name: 中国直连
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
+    interval: 300
+    max-failed-times: 3
     proxies:
       - DIRECT
       - 手动选择
+      - 台湾自动
+      - 新国自动
+      - 日本自动
+      - 美国自动
+      - 韩国自动
+      - 全球自动
 
   - name: 香港自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)(?:香港|HK|HKG|Hong\\s*Kong|🇭🇰)"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
   - name: 台湾自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)(?:台湾|台灣|臺灣|TW|TWN|Taiwan|🇹🇼|TK专线)"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
   - name: 新国自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)(?:新加坡|Singapore|SGP|狮城|🇸🇬)"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
   - name: 日本自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)(?:日本|Japan|JPN|东京|大阪|🇯🇵)"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
   - name: 美国自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)(?:美国|USA|United\\s*States|US|洛杉矶|硅谷|波特兰|🇺🇸)"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
   - name: 韩国自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)(?:韩国|South\\s*Korea|KOR|首尔|🇰🇷)"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
   - name: 全球自动
     type: url-test
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/XD.png
     include-all: true
-    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|套餐|时间|官网"
+    exclude-filter: "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|剩余|仅限|套餐|计划"
     filter: "(?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美国|USA|United\\s*States|US|香港|HK|HKG|韩国|South\\s*Korea|KOR)).+$"
     interval: 300
-    proxies:
-      - DIRECT
+    max-failed-times: 3
 
 rules:
+  # === 最优先：修复 Steam 下载环境 ===
   - "DOMAIN-SUFFIX,steamserver.net,DIRECT"
   - "DOMAIN-SUFFIX,cm.steampowered.com,DIRECT"
   - "RULE-SET,steamCN,DIRECT"
   - "RULE-SET,download,DIRECT"
+  - "DOMAIN,fandai.ikuu.cc.cd,DIRECT"
+  - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
+  - "DOMAIN,emos.idaa.eu.org,DIRECT"
 
+  # === 智能AI分流规则 - 最高优先级 ===
   - "RULE-SET,gemini_domain,智能AI"
   - "RULE-SET,copilot,智能AI"
   - "RULE-SET,claude,智能AI"
@@ -472,6 +499,7 @@ rules:
   - "DOMAIN-SUFFIX,generativelanguage.googleapis.com,智能AI"
   - "DOMAIN-SUFFIX,bard.google.com,智能AI"
 
+  # === 基础及常规应用分流 ===
   - "DOMAIN-SUFFIX,cloudflare.com,手动选择"
   - "RULE-SET,douyin_domain,中国直连"
   - "DOMAIN-KEYWORD,vidhub,中国直连"
@@ -488,8 +516,10 @@ rules:
   - "RULE-SET,emby_domain,奈飞电影"
   - "RULE-SET,bing,谷歌搜索"
 
+  # === 全局 Steam 规则 ===
   - "RULE-SET,steam,游戏软件"
 
+  # === 兜底及其他规则 ===
   - "RULE-SET,geolocation-!cn,手动选择"
   - "RULE-SET,cn_domain,中国直连"
   - "RULE-SET,cn_ip,中国直连"
