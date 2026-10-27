@@ -1,971 +1,374 @@
-# PAKO_urltest-heibai
-metadata:
-  version: "HEIBAI-2.0"
-  updated: "2026-03"
-owner: "PAKO"
-note: "urltest-heibai-icon"
-mixed-port: 7897
-allow-lan: true
-mode: rule
-global-ua: clash-verge/v2.2.3
-geodata-mode: true
-geodata-loader: standard
-unified-delay: true
-log-level: warning
-ipv6: true
-external-controller: 127.0.0.1:9090
-tcp-concurrent: true
-enable-process: true
-find-process-mode: strict
-# global-client-fingerprint: chrome
-keep-alive-interval: 15
-geo-auto-update: true
-geo-update-interval: 24
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
-profile:
-  store-selected: true
-  store-fake-ip: true
-tun:
-  enable: false
-  device: ClashVergeREV
-  stack: mixed
-  mtu: 1500
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-detect-interface: true
-dns:
-  enable: true
-  ipv6: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  use-hosts: true
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - 114.114.114.114
-    - system
-  fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "connect.rom.miui.com"
-    - "+.miwifi.com"
-    - "+.ntp.org"
-    - "+.u-tools.cn"
-    - "+.mediatek.com"
-    - "+.cfprefer1.xyz"
-    - "+.wetab.link"
-    - "+.tyasaka.xyz"
-    # QQ
-    - "localhost.ptlogin2.qq.com"
-    - "localhost.sec.qq.com"
-    # WeChat
-    - "localhost.work.weixin.qq.com"
-    - "+.weixin.qq.com"
-    - "+.wechat.com"
-    # Windows
-    - "time.windows.com"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "+.wpsmail.net"
-    - "+.henzanapp.com"
-    - "+.pconline.com.cn"
-    
-rule-providers:
-  private:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
-    path: ./ruleset/private.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  cn_domain:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml
-    path: ./ruleset/cn_domain.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  douyin_domain:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml
-    path: ./ruleset/douyin_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  Spotify_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
-    path: ./ruleset/Spotify_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  youtube_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
-    path: ./ruleset/youtube_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  telegram_domain:
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.yaml
-    path: ./ruleset/telegram_domain.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  google_domain:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/yamal-PROXY/refs/heads/main/google.yaml
-    path: ./ruleset/google_domain.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  geolocation-!cn:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
-    path: ./ruleset/geolocation-!cn.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  cn_ip:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml
-    path: ./ruleset/cn_ip.yaml
-    behavior: ipcidr
-    interval: 86400
-    format: yaml
-    type: http
-  telegram_ip:
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml
-    path: ./ruleset/telegram_ip.yaml
-    behavior: ipcidr
-    interval: 86400
-    format: yaml
-    type: http
-  google_ip:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
-    path: ./ruleset/google_ip.yaml
-    behavior: ipcidr
-    interval: 86400
-    format: yaml
-    type: http
-  bing:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml
-    path: ./ruleset/bing.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  copilot:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml
-    path: ./ruleset/copilot.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  claude:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml
-    path: ./ruleset/claude.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  bard:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml
-    path: ./ruleset/bard.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  openai:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
-    path: ./ruleset/openai.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  steam:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
-    path: ./ruleset/steam.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  netflix_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
-    path: ./ruleset/netflix_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  emby_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml
-    path: ./ruleset/emby_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  dns_leak:
-    type: http
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/Rule/Prevent_DNS_Leaks.list
-    path: ./ruleset/dns_leak.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-  tiktok:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@refs/heads/master/rule/Clash/TikTok/TikTok.yaml
-    path: ./ruleset/tiktok.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
+// ==========================================
+// 🌟 核心配置区
+// ==========================================
+const TEMPLATES = [
+  {
+    id: "PAKO_default",
+    name: "PAKO_default",
+    url: "https://raw.githubusercontent.com/6otho/mihomo-yaml/refs/heads/main/PAKO_default.yaml"
+  },
+  {
+    id: "PAKO_urltest_HeiBai",
+    name: "PAKO_urltest_HeiBai",
+    url: "https://raw.githubusercontent.com/6otho/mihomo-yaml/refs/heads/main/PAKO_urltest_HeiBai.yaml"
+  },
+  {
+    id: "PAKO_urltest-CaiSe",
+    name: "PAKO_urltest-CaiSe",
+    url: "https://raw.githubusercontent.com/6otho/mihomo-yaml/refs/heads/main/PAKO_urltest-CaiSe.yaml"
+  }
+];
 
-proxy-groups:
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(3).png
-    include-all: true
-    name: FINAL
-    type: select
-    max-failed-times: 3
-    proxies:
-      - JP AUTO
-      - SG AUTO
-      - US AUTO
-      - KR AUTO
-      - HK AUTO
-      - TW AUTO
-      - AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(5).png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: AUTO
-    type: url-test
-    interval: 300
-    max-failed-times: 3
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/chatgpt(balck).png
-    name: AIGC
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - HK AUTO
-      - TW AUTO
-      - FINAL
-      - AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/telegram.png
-    name: TELEGRAM
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - TW AUTO
-      - FINAL
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/google.png
-    name: GOOGLE
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/spotify.png
-    name: SPOTIFY
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Emby1.png
-    name: EMBY
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/tiktok.png
-    name: TIKTOK
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - GA AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/Youtube.png
-    name: YOUTUBE
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/game(1).png
-    name: STEAM
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - DIRECT
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/China_Map.png
-    name: MAINLAND
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - DIRECT
-      - FINAL
-      - TW AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - GA AUTO
+export default {
+  async fetch(request, env, ctx) {
+    const reqUrl = request.url;
+    const urlObj = new URL(reqUrl);
 
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Hong_Kong.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(香港|HK|HKG|Hong\s*Kong)\b|🇭🇰)
-    name: HK AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Taiwan(1).png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:台湾|台灣|臺灣|\b(TW|TWN|Taiwan)\b|🇹🇼|🇼🇸)
-    name: TW AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Singapore.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(新加坡|Singapore|SGP)\b|🇸🇬)
-    name: SG AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Japann.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(日本|Japan|JPN)\b|🇯🇵)
-    name: JP AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/United_States.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(美国|USA|United\s*States|US)\b|🇺🇸)
-    name: US AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Korea.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(韩国|South\s*Korea|KOR)\b|🇰🇷)
-    name: KR AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Global.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美国|USA|United\s*States|US|香港|HK|HKG|韩国|South\s*Korea|KOR)).+$
-    name: GA AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
- 
-rules:
-  - "DOMAIN,cloudflare.com,DIRECT"
-  - "DOMAIN,fandai.ikuu.cc.cd,DIRECT"
-  - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
-  - "DOMAIN,emos.idaa.eu.org,DIRECT"
-  - "RULE-SET,douyin_domain,MAINLAND"
-  - "DOMAIN,agedm.org,DIRECT"
-  - "DOMAIN,vidhub1.cc,FINAL"
-  - "DOMAIN,lite.saturdayvideo.top,EMBY"
-  - "DOMAIN,dwq.emby.moe,EMBY"
-  - "DOMAIN,domainname,FINAL"
-  - "RULE-SET,Spotify_domain,SPOTIFY"
-  - "RULE-SET,youtube_domain,YOUTUBE"
-  - "RULE-SET,tiktok,TIKTOK"
-  - "DOMAIN,speedtest.net,FINAL"
-  - "RULE-SET,copilot,AIGC"
-  - "RULE-SET,claude,AIGC"
-  - "RULE-SET,bard,AIGC"
-  - "RULE-SET,openai,AIGC"
-  - "DOMAIN,chat.openai.com,AIGC"
-  - "DOMAIN,chatgpt.com,AIGC"
-  - "DOMAIN,api.openai.com,AIGC"
-  - "DOMAIN,auth0.com,AIGC"
-  - "RULE-SET,google_domain,GOOGLE"
-  - "RULE-SET,google_ip,GOOGLE"
-  - "RULE-SET,telegram_domain,TELEGRAM"
-  - "RULE-SET,telegram_ip,TELEGRAM"
-  - "RULE-SET,private,FINAL"
-  - "RULE-SET,netflix_domain,EMBY"
-  - "RULE-SET,emby_domain,EMBY"
-  - "RULE-SET,bing,GOOGLE"
-  - "RULE-SET,steam,STEAM"
-  - "RULE-SET,geolocation-!cn,FINAL"
-  - "RULE-SET,cn_domain,MAINLAND"
-  - "RULE-SET,cn_ip,MAINLAND"
-  - "RULE-SET,dns_leak,FINAL"
-  - "GEOIP,CN,MAINLAND"
-  - "MATCH,FINAL"
-      QUIC:
-      ports: [443, 8443]
+    if (urlObj.pathname === '/' || urlObj.pathname === '') {
+      const optionsHtml = TEMPLATES.map(t => `<option value="${t.id}">📄 ${t.name}</option>`).join('\n');
+      const htmlContent = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mihomo & Stash 在线配置中心</title>
+  <style>
+    :root {
+      --primary: #0071e3; --bg-light: #f5f5f7; --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.5); --text-main: #1d1d1f; --text-muted: #86868b;
+      --input-bg: rgba(120, 120, 128, 0.08); --btn-bg: linear-gradient(135deg, #5ac8fa 0%, #007aff 100%);
+      --arrow-icon: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d1d1f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #0a84ff; --bg-light: #000000; --glass-bg: rgba(28, 28, 30, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1); --text-main: #f5f5f7; --text-muted: #a1a1a6;
+        --input-bg: rgba(120, 120, 128, 0.16); --btn-bg: linear-gradient(135deg, #64d2ff 0%, #0a84ff 100%);
+        --arrow-icon: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      }
+    }
+    body {
+      margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-light); display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; color: var(--text-main);
+      background-image: radial-gradient(circle at 15% 50%, rgba(0, 113, 227, 0.15), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(191, 90, 242, 0.15), transparent 25%);
+    }
+    .container {
+      width: 90%; max-width: 480px; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); box-sizing: border-box; margin: 20px 0;
+    }
+    .header { text-align: center; margin-bottom: 24px; }
+    .header h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.5px; }
+    .header p { margin: 8px 0 0; font-size: 13px; color: var(--text-muted); }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text-muted); }
+    input[type="text"], select, .action-btn { box-sizing: border-box; width: 100%; }
+    input[type="text"], select {
+      padding: 14px 16px; font-size: 15px; background: var(--input-bg);
+      border: 1px solid transparent; border-radius: 12px; color: var(--text-main); outline: none; transition: all 0.2s ease;
+    }
+    input[type="text"]:focus, select:focus { border-color: var(--primary); background: transparent; box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1); }
+    select { appearance: none; -webkit-appearance: none; background-image: var(--arrow-icon); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 40px; cursor: pointer; }
+    .action-btn { background: var(--btn-bg); color: white; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.1s, opacity 0.2s; }
+    .action-btn:active { transform: scale(0.98); } .action-btn:hover { opacity: 0.9; }
+    .result-box { margin-top: 24px; display: none; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .result-input-wrap { position: relative; margin-bottom: 16px; }
+    .result-input-wrap input { padding-right: 80px; color: var(--primary); font-weight: 500; }
+    .copy-btn { position: absolute; right: 6px; top: 6px; bottom: 6px; width: auto; padding: 0 16px; background: var(--btn-bg); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; transition: opacity 0.2s; }
+    .copy-btn:hover { opacity: 0.9; }
+    .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--text-main); color: var(--bg-light); padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 9999; }
+    .button-group { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+    .btn-universal { 
+      flex: 1 1 calc(50% - 10px); min-width: 90px; display: flex; align-items: center; justify-content: center; gap: 8px; 
+      background: var(--btn-bg); color: white; padding: 12px 14px; border-radius: 999px; font-size: 14px; font-weight: bold; 
+      text-decoration: none; transition: background 0.2s, transform 0.1s; box-sizing: border-box; 
+    }
+    .btn-universal:hover { opacity: 0.9; } .btn-universal:active { transform: scale(0.98); }
+    .btn-icon-small { width: 22px; height: 22px; object-fit: cover; border-radius: 50%; }
+    .green-comment { color: #34c759; font-size: 13px; margin-top: 14px; text-align: center; font-weight: 500; }
+    .fallback-text { font-size: 12px; color: var(--text-muted); margin-top: 18px; text-align: left; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="toast" id="toast">复制成功</div>
+  <div class="container">
+    <div class="header">
+      <h1>Mihomo & Stash 在线配置</h1>
+      <p>自用配置 · 双端无损适配</p>
+    </div>
+    <div class="form-group">
+      <label>机场订阅链接</label>
+      <input type="text" id="airportUrl" placeholder="https://..." autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label>配置名称 (选填)</label>
+      <input type="text" id="profileName" placeholder="不填则自动提取纯净机场域名" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label>选择您的 YAML 规则模板</label>
+      <select id="templateSelect">${optionsHtml}</select>
+    </div>
+    <button class="action-btn" onclick="generate()">生成并获取配置</button>
+    <div class="result-box" id="resultBox">
+      <label>您的直达配置链接</label>
+      <div class="result-input-wrap">
+        <input type="text" id="finalUrl" readonly>
+        <button class="copy-btn" onclick="copyUrl()">复制链接</button>
+      </div>
+      <label>请点击下方按钮一键导入：</label>
+      <div class="button-group">
+        <a id="btn-stash" class="btn-universal" href="javascript:alert('请先点击上方生成配置！')">
+          <img src="https://play-lh.googleusercontent.com/dxv1MJzKNiLsCOYFVkITNa4CSKHGy2qVfe75gxBzcRo4nE4_bS2ACnCSqzuUAWIGybR3PuxnZn_kSYpnAlOpWbs=w480-h960" class="btn-icon-small" alt="Stash"> Stash
+        </a>
+        <a id="btn-verge" class="btn-universal" href="javascript:alert('请先点击上方生成配置！')">
+          <img src="https://raw.githubusercontent.com/clash-verge-rev/clash-verge-rev/main/src-tauri/icons/icon.png" class="btn-icon-small" alt="Verge"> Clash Verge
+        </a>
+        <a id="btn-flclash" class="btn-universal" href="javascript:alert('请先点击上方生成配置！')">
+          <img src="https://raw.githubusercontent.com/chen08209/FlClash/main/assets/images/icon.png" class="btn-icon-small" alt="FlClash"> FlClash
+        </a>
+        <a id="btn-clashmeta" class="btn-universal" href="javascript:alert('请先点击上方生成配置！')">
+          <img src="https://raw.githubusercontent.com/MetaCubeX/ClashMetaForAndroid/refs/heads/main/app/src/main/res/mipmap-hdpi/ic_launcher.png" class="btn-icon-small" alt="ClashMeta"> ClashMeta
+        </a>
+      </div>
+      <div class="green-comment" id="dynamicTip">✓ DNS 环路防爆加固完成，全平台原版兼容已就绪</div>
+      <div class="fallback-text">💡 提示：若未唤醒软件，请直接复制上方链接，到 Stash 或 Clash Verge 中从 URL 下载保存即可。</div>
+    </div>
+  </div>
+  <script>
+    function generate() {
+      let url = document.getElementById('airportUrl').value.trim().replace(/\\s*[,，]\\s*/g, ',');
+      if (!url.startsWith('http')) { alert('请输入正确的订阅链接！'); return; }
+      const tpl = document.getElementById('templateSelect').value;
+      const name = document.getElementById('profileName').value.trim();
+      let finalUrl = window.location.origin + '/mihomo/' + tpl + '/' + url;
+      if (name) { finalUrl += (url.includes('?') ? '&' : '?') + 'rename=' + encodeURIComponent(name); }
+      document.getElementById('finalUrl').value = finalUrl;
+      document.getElementById('resultBox').style.display = 'block';
+      const safeUrl = encodeURIComponent(finalUrl);
+      const safeName = encodeURIComponent(name || "Mihomo配置");
+      document.getElementById('btn-stash').href = "stash://install-config?url=" + safeUrl + "&name=" + safeName;
+      document.getElementById('btn-verge').href = "clash://install-config?url=" + safeUrl + "&name=" + safeName;
+      document.getElementById('btn-flclash').href = "flclash://install-config?url=" + safeUrl + "&name=" + safeName;
+      document.getElementById('btn-clashmeta').href = "clashmeta://install-config?url=" + safeUrl + "&name=" + safeName;
+    }
+    function copyUrl() {
+      const copyText = document.getElementById("finalUrl");
+      if (!copyText.value) return;
+      copyText.select(); copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value).then(() => {
+        const toast = document.getElementById('toast'); toast.style.opacity = 1;
+        setTimeout(() => toast.style.opacity = 0, 2000);
+      });
+    }
+  </script>
+</body>
+</html>`;
+      return new Response(htmlContent, { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } });
+    }
 
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
-profile:
-  store-selected: true
-  store-fake-ip: true
-tun:
-  enable: false
-  device: ClashVergeREV
-  stack: mixed
-  mtu: 1500
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-detect-interface: true
+    // ==========================================
+    // ⚙️ 第二部分：核心 YAML 注入后台
+    // ==========================================
+    const match = reqUrl.match(/\/mihomo\/([^\/]+)\/(https?:\/\/.+)/);
 
-dns:
-  enable: true
-  ipv6: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  use-hosts: true
-  respect-rules: true # 优先按规则匹配分流
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - 114.114.114.114
-    - system
-  # === 新增：绑定国内与字节跳动 CDN 域名走国内 DNS，获得最优 CDN 节点 ===
-  nameserver-policy:
-    "geosite:cn,private":
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-    "+.bytedance.com,+.byteimg.com,+.bytegecko.com,+.pstatp.com,+.snssdk.com,+.amemv.com,+.volces.com":
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-  fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "connect.rom.miui.com"
-    - "+.miwifi.com"
-    - "+.ntp.org"
-    - "+.u-tools.cn"
-    - "+.mediatek.com"
-    - "+.cfprefer1.xyz"
-    - "+.wetab.link"
-    - "+.tyasaka.xyz"
-    # QQ
-    - "localhost.ptlogin2.qq.com"
-    - "localhost.sec.qq.com"
-    # WeChat
-    - "localhost.work.weixin.qq.com"
-    - "+.weixin.qq.com"
-    - "+.wechat.com"
-    # Windows
-    - "time.windows.com"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "+.wpsmail.net"
-    - "+.henzanapp.com"
-    - "+.pconline.com.cn"
-    
-rule-providers:
-  private:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
-    path: ./ruleset/private.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  cn_domain:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml
-    path: ./ruleset/cn_domain.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  douyin_domain:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml
-    path: ./ruleset/douyin_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  Spotify_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml
-    path: ./ruleset/Spotify_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  youtube_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
-    path: ./ruleset/youtube_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  telegram_domain:
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.yaml
-    path: ./ruleset/telegram_domain.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  google_domain:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/yamal-PROXY/refs/heads/main/google.yaml
-    path: ./ruleset/google_domain.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  geolocation-!cn:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
-    path: ./ruleset/geolocation-!cn.yaml
-    behavior: domain
-    interval: 86400
-    format: yaml
-    type: http
-  cn_ip:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml
-    path: ./ruleset/cn_ip.yaml
-    behavior: ipcidr
-    interval: 86400
-    format: yaml
-    type: http
-  telegram_ip:
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.yaml
-    path: ./ruleset/telegram_ip.yaml
-    behavior: ipcidr
-    interval: 86400
-    format: yaml
-    type: http
-  google_ip:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
-    path: ./ruleset/google_ip.yaml
-    behavior: ipcidr
-    interval: 86400
-    format: yaml
-    type: http
-  bing:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml
-    path: ./ruleset/bing.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  copilot:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml
-    path: ./ruleset/copilot.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  claude:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml
-    path: ./ruleset/claude.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  bard:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml
-    path: ./ruleset/bard.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  openai:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
-    path: ./ruleset/openai.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  steam:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
-    path: ./ruleset/steam.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  netflix_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml
-    path: ./ruleset/netflix_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  emby_domain:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml
-    path: ./ruleset/emby_domain.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
-  dns_leak:
-    type: http
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/Rule/Prevent_DNS_Leaks.list
-    path: ./ruleset/dns_leak.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-  tiktok:
-    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@refs/heads/master/rule/Clash/TikTok/TikTok.yaml
-    path: ./ruleset/tiktok.yaml
-    behavior: classical
-    interval: 86400
-    format: yaml
-    type: http
+    if (match) {
+      const tplId = decodeURIComponent(match[1]);
+      let rawAirportLink = match[2];
+      let customName = "";
 
-proxy-groups:
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(3).png
-    include-all: true
-    name: FINAL
-    type: select
-    max-failed-times: 3
-    proxies:
-      - JP AUTO
-      - SG AUTO
-      - US AUTO
-      - KR AUTO
-      - HK AUTO
-      - TW AUTO
-      - AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(5).png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: AUTO
-    type: url-test
-    interval: 300
-    max-failed-times: 3
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/chatgpt(balck).png
-    name: AIGC
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - HK AUTO
-      - TW AUTO
-      - FINAL
-      - AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/telegram.png
-    name: TELEGRAM
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - TW AUTO
-      - FINAL
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/google.png
-    name: GOOGLE
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/spotify.png
-    name: SPOTIFY
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Emby1.png
-    name: EMBY
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/tiktok.png
-    name: TIKTOK
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - GA AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/Youtube.png
-    name: YOUTUBE
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/game(1).png
-    name: STEAM
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - FINAL
-      - TW AUTO
-      - DIRECT
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/China_Map.png
-    name: MAINLAND
-    type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - DIRECT
-      - FINAL
-      - TW AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - KR AUTO
-      - GA AUTO
+      const renameMatch = rawAirportLink.match(/[?&]rename=([^&]+)/);
+      if (renameMatch) {
+        customName = decodeURIComponent(renameMatch[1]);
+        rawAirportLink = rawAirportLink.replace(/[?&]rename=[^&]+/, '');
+      }
+      rawAirportLink = rawAirportLink.replace(/[?&]os=[^&]+/g, '');
 
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Hong_Kong.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(香港|HK|HKG|Hong\s*Kong)\b|🇭🇰)
-    name: HK AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Taiwan(1).png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:台湾|台灣|臺灣|\b(TW|TWN|Taiwan)\b|🇹🇼|🇼🇸)
-    name: TW AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Singapore.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(新加坡|Singapore|SGP)\b|🇸🇬)
-    name: SG AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Japann.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(日本|Japan|JPN)\b|🇯🇵)
-    name: JP AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/United_States.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(美国|USA|United\s*States|US)\b|🇺🇸)
-    name: US AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Korea.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(韩国|South\s*Korea|KOR)\b|🇰🇷)
-    name: KR AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/Global.png
-    include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美国|USA|United\s*States|US|香港|HK|HKG|韩国|South\s*Korea|KOR)).+$
-    name: GA AUTO
-    type: url-test
-    interval: 300
-    lazy: false
-    max-failed-times: 3
-    tolerance: 50
-    url: https://www.gstatic.com/generate_204
- 
-rules:
-  - "DOMAIN,cloudflare.com,DIRECT"
-  - "DOMAIN,fandai.ikuu.cc.cd,DIRECT"
-  - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
-  - "DOMAIN,emos.idaa.eu.org,DIRECT"
+      const airportList = rawAirportLink.split(/[,，|](?=https?:\/\/)/).map(l => l.trim()).filter(Boolean);
+      const cleanAirportLinks = airportList.map(link => {
+        try {
+          const parsedUrl = new URL(link);
+          parsedUrl.searchParams.delete('rename');
+          parsedUrl.searchParams.delete('os');
+          return parsedUrl.toString();
+        } catch (e) {
+          return link;
+        }
+      });
 
-  # === 优化：抖音/字节系 CDN 规则提权强制走 MAINLAND ===
-  - "DOMAIN-KEYWORD,bytedance,MAINLAND"
-  - "DOMAIN-KEYWORD,byteimg,MAINLAND"
-  - "DOMAIN-KEYWORD,bytegecko,MAINLAND"
-  - "DOMAIN-KEYWORD,pstatp,MAINLAND"
-  - "DOMAIN-KEYWORD,ibyteimg,MAINLAND"
-  - "DOMAIN-KEYWORD,volces,MAINLAND"
-  - "DOMAIN-SUFFIX,snssdk.com,MAINLAND"
-  - "DOMAIN-SUFFIX,amemv.com,MAINLAND"
-  - "RULE-SET,douyin_domain,MAINLAND"
+      const primaryAirport = cleanAirportLinks[0] || rawAirportLink;
+      const mergedAirportLink = cleanAirportLinks.join('|');
+      const userAgent = request.headers.get("User-Agent") || "";
+      const templateObj = TEMPLATES.find(t => t.id === tplId);
+      if (!templateObj) return new Response("未找到模板", { status: 404 });
 
-  - "DOMAIN,agedm.org,DIRECT"
-  - "DOMAIN,vidhub1.cc,FINAL"
-  - "DOMAIN,lite.saturdayvideo.top,EMBY"
-  - "DOMAIN,dwq.emby.moe,EMBY"
-  - "DOMAIN,domainname,FINAL"
-  - "RULE-SET,Spotify_domain,SPOTIFY"
-  - "RULE-SET,youtube_domain,YOUTUBE"
-  - "RULE-SET,tiktok,TIKTOK"
-  - "DOMAIN,speedtest.net,FINAL"
-  - "RULE-SET,copilot,AIGC"
-  - "RULE-SET,claude,AIGC"
-  - "RULE-SET,bard,AIGC"
-  - "RULE-SET,openai,AIGC"
-  - "DOMAIN,chat.openai.com,AIGC"
-  - "DOMAIN,chatgpt.com,AIGC"
-  - "DOMAIN,api.openai.com,AIGC"
-  - "DOMAIN,auth0.com,AIGC"
-  - "RULE-SET,google_domain,GOOGLE"
-  - "RULE-SET,google_ip,GOOGLE"
-  - "RULE-SET,telegram_domain,TELEGRAM"
-  - "RULE-SET,telegram_ip,TELEGRAM"
-  - "RULE-SET,private,FINAL"
-  - "RULE-SET,netflix_domain,EMBY"
-  - "RULE-SET,emby_domain,EMBY"
-  - "RULE-SET,bing,GOOGLE"
-  - "RULE-SET,steam,STEAM"
-  - "RULE-SET,geolocation-!cn,FINAL"
-  - "RULE-SET,cn_domain,MAINLAND"
-  - "RULE-SET,cn_ip,MAINLAND"
-  - "RULE-SET,dns_leak,FINAL"
-  - "GEOIP,CN,MAINLAND"
-  - "MATCH,FINAL"
+      try {
+        const convertApi = `https://api.v1.mk/sub?target=clash&url=${encodeURIComponent(mergedAirportLink)}&insert=false&list=true&append_info=true&exclude_remarks=ThisIsImpossibleToMatch999`;
+        
+        const [nodesResponse, templateResponse] = await Promise.all([
+          fetch(convertApi, { headers: { "User-Agent": "clash-verge/v1.7.7" } }),
+          fetch(templateObj.url)
+        ]);
+
+        if (!nodesResponse.ok) throw new Error("机场节点解析失败");
+        if (!templateResponse.ok) throw new Error("模板获取失败");
+
+        let trafficHeader = nodesResponse.headers.get("subscription-userinfo");
+        let updateInterval = nodesResponse.headers.get("profile-update-interval");
+        let webPageUrl = nodesResponse.headers.get("profile-web-page-url");
+
+        try {
+          const modernUAs = [userAgent, "clash-verge/v1.7.7", "sing-box/1.11.0", "mihomo/1.18.2", "Stash/2.6.0"];
+          for (let ua of modernUAs) {
+            if (!ua) continue;
+            let tRes = await fetch(primaryAirport, { method: 'HEAD', headers: { "User-Agent": ua } });
+            let tHead = tRes.headers.get("subscription-userinfo");
+            if (!tHead || tHead.includes("total=1;")) {
+              tRes = await fetch(primaryAirport, { method: 'GET', headers: { "User-Agent": ua } });
+              tHead = tRes.headers.get("subscription-userinfo");
+            }
+            if (tHead && !tHead.includes("total=1;")) { 
+              if (!trafficHeader) trafficHeader = tHead;
+              if (!updateInterval && tRes.headers.get("profile-update-interval")) updateInterval = tRes.headers.get("profile-update-interval");
+              if (!webPageUrl && tRes.headers.get("profile-web-page-url")) webPageUrl = tRes.headers.get("profile-web-page-url");
+              break; 
+            }
+          }
+        } catch (e) {}
+
+        let proxiesYaml = await nodesResponse.text();
+        let templateText = await templateResponse.text();
+
+        // 基础清洗
+        templateText = templateText.replace(/^[ \t]*-[ \t]*['"]?\*['"]?[ \t]*(?:#.*)?\r?\n?/gm, '');
+        templateText = templateText.replace(/^[ \t]*-[ \t]*system[ \t]*(?:#.*)?\r?\n?/gm, '');
+        if (!/default-nameserver:/i.test(templateText)) {
+          templateText = templateText.replace(/^dns:\s*\r?\n/m, "dns:\n  default-nameserver:\n    - 223.5.5.5\n    - 119.29.29.29\n");
+        }
+        templateText = templateText.replace(/^tun:[ \t]*(?:#.*)?(?:\r?\n(?:[ \t]+.*)?)*\r?\n?/gm, '');
+        templateText = templateText.replace(/^[ \t]*interface-name:.*(?:\r?\n|$)/gm, '');
+        templateText = templateText.replace(/^[ \t]*routing-mark:.*(?:\r?\n|$)/gm, '');
+        templateText = templateText.replace(/^([ \t]*listen:[ \t]*['"]?(?:[a-zA-Z0-9\.:]+:)?)(53)(['"]?(?:[ \t]+#.*)?)$/gm, '$11053$3');
+
+        let formattedNodesOnly = proxiesYaml.replace(/^[ \t]*proxies:[ \t]*\r?\n/i, '');
+
+        // ====================================================================
+        // 🚀 多模板自适应清洗引擎（同时兼容 简体 / 繁体 / 英文 策略组名）
+        // ====================================================================
+        try {
+          const nodeNames = [];
+          for (const line of formattedNodesOnly.split('\n')) {
+            const m = line.match(/name:\s*['"]?([^'",}\r\n]+)/i);
+            if (m) nodeNames.push(m[1].trim());
+          }
+
+          // 核心：支持三种模板的组名映射
+          const multiTemplateRules = [
+            {
+              names: ["香港自动", "香港自動", "HK AUTO"],
+              regex: /(香港|HK|HKG|Hong\s*Kong|🇭🇰)/i
+            },
+            {
+              names: ["台湾自动", "台灣自動", "TW AUTO"],
+              regex: /(台湾|台灣|臺灣|\b(TW|TWN|Taiwan)\b|🇨🇳|🇹🇼)/i
+            },
+            {
+              names: ["新国自动", "新國自動", "SG AUTO"],
+              regex: /(新加坡|Singapore|SGP|🇸🇬)/i
+            },
+            {
+              names: ["日本自动", "日本自動", "JP AUTO"],
+              regex: /(日本|Japan|JPN|🇯🇵)/i
+            },
+            {
+              names: ["美国自动", "美國自動", "US AUTO"],
+              regex: /(美国|美國|USA|United\s*States|US|🇺🇸)/i
+            },
+            {
+              names: ["韩国自动", "韓國自動", "KR AUTO"],
+              regex: /(韩国|韓國|South\s*Korea|KOR|🇰🇷)/i
+            }
+          ];
+
+          // 找出机场无节点的地区的所有别名
+          const emptyGroupsSet = new Set();
+          for (const rule of multiTemplateRules) {
+            const hasNode = nodeNames.some(name => rule.regex.test(name));
+            if (!hasNode) {
+              rule.names.forEach(n => emptyGroupsSet.add(n));
+            }
+          }
+
+          // 逐行安全过滤
+          if (emptyGroupsSet.size > 0) {
+            const lines = templateText.split(/\r?\n/);
+            const cleanLines = [];
+            let skippingGroup = false;
+
+            for (let i = 0; i < lines.length; i++) {
+              const line = lines[i];
+
+              const groupStartMatch = line.match(/^\s*-\s+name:\s*['"]?([^'",\s#]+)/);
+              if (groupStartMatch) {
+                const gName = groupStartMatch[1];
+                if (emptyGroupsSet.has(gName)) {
+                  skippingGroup = true;
+                  continue;
+                } else {
+                  skippingGroup = false;
+                }
+              } else if (skippingGroup) {
+                if (/^[a-zA-Z0-9_-]+:/.test(line) || /^\s*-\s+name:/.test(line)) {
+                  skippingGroup = false;
+                } else {
+                  continue;
+                }
+              }
+
+              const refMatch = line.match(/^\s*-\s+['"]?([^'",\s#]+)['"]?\s*(?:#.*)?$/);
+              if (refMatch && emptyGroupsSet.has(refMatch[1])) {
+                continue;
+              }
+
+              cleanLines.push(line);
+            }
+            templateText = cleanLines.join('\n');
+          }
+        } catch (cleanErr) {
+          console.error("动态清洗空组失败:", cleanErr);
+        }
+
+        templateText = templateText.replace(/^proxies:\s*(\[\])?\s*$/gm, '');
+        templateText += `\n\nproxies:\n${formattedNodesOnly}\n`;
+
+        let autoName = templateObj.name;
+        try {
+          let host = new URL(primaryAirport).hostname;
+          host = host.replace(/^(sub|api|www|node|update|dy|dingyue)\./i, '');
+          autoName = cleanAirportLinks.length > 1 ? `${host}+合并` : host;
+        } catch(e) {}
+
+        let finalName = customName || autoName;
+        finalName = finalName.replace(/\.yaml$/i, '').replace(/[\r\n"'\\]/g, "").trim();
+
+        const responseHeaders = new Headers();
+        responseHeaders.set("Content-Type", "application/x-yaml; charset=utf-8");
+        responseHeaders.set("Cache-Control", "no-store");
+        try { responseHeaders.set("profile-title", encodeURI(finalName)); } catch(e) {}
+        responseHeaders.set("Content-Disposition", `attachment; filename*=utf-8''${encodeURIComponent(finalName)}`);
+        
+        if (trafficHeader) responseHeaders.set("Subscription-Userinfo", trafficHeader);
+        if (updateInterval) responseHeaders.set("Profile-Update-Interval", updateInterval);
+        if (webPageUrl) responseHeaders.set("Profile-Web-Page-Url", webPageUrl);
+
+        return new Response(templateText, { status: 200, headers: responseHeaders });
+
+      } catch (error) {
+        return new Response("配置生成失败：" + error.message, { status: 500 });
+      }
+    }
+
+    return new Response('Not Found', { status: 404 });
+  }
+};
