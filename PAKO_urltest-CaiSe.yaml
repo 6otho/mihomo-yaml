@@ -52,6 +52,10 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -150,7 +154,7 @@ rule-providers:
     format: yaml
     type: http
   google_ip:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml
     path: ./ruleset/google_ip.yaml
     behavior: ipcidr
     interval: 86400
@@ -338,7 +342,7 @@ proxy-groups:
       - 日本自動
       - 美國自動
       - 韓國自動
-      - 全球手动
+      - 全球手動
 
   - name: 油管軟件
     type: select
@@ -507,7 +511,7 @@ rules:
   - "RULE-SET,bing,谷歌搜索"
   - "RULE-SET,steam,游戲軟件"
   - "RULE-SET,geolocation-!cn,手動選擇"
-  - "RULE-SET,cn_domain,中國直连"
-  - "RULE-SET,cn_ip,中國直连"
+  - "RULE-SET,cn_domain,中國直連"
+  - "RULE-SET,cn_ip,中國直連"
   - "RULE-SET,dns_leak,手動選擇"
   - "MATCH,手動選擇"
