@@ -53,6 +53,10 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -477,7 +481,6 @@ rules:
   - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
   - "DOMAIN,emos.idaa.eu.org,DIRECT"
 
-  # 字节/抖音 CDN 优化
   - "DOMAIN-KEYWORD,bytedance,MAINLAND"
   - "DOMAIN-KEYWORD,byteimg,MAINLAND"
   - "DOMAIN-KEYWORD,bytegecko,MAINLAND"
