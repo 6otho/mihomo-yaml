@@ -163,7 +163,7 @@ rule-providers:
     format: yaml
     type: http
   google_ip:
-    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
     path: ./ruleset/google_ip.yaml
     behavior: ipcidr
     interval: 86400
