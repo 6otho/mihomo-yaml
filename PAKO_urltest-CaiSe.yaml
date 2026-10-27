@@ -2,8 +2,8 @@
 metadata:
   version: "2025.06"
   updated: "2025-06"
-owner: "PAKO"
-note: "urltest-CaiSe-icon"
+  owner: "PAKO"
+  note: "urltest-CaiSe-icon"
 
 mixed-port: 7897
 allow-lan: true
@@ -80,21 +80,21 @@ dns:
     
 rule-providers:
   private:
-    url: https://gh.iknn.eu.org/https://https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml
     path: ./ruleset/private.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   cn_domain:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml
     path: ./ruleset/cn_domain.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   douyin_domain:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml
     path: ./ruleset/douyin_domain.yaml
     behavior: classical
     interval: 86400
@@ -129,14 +129,14 @@ rule-providers:
     format: yaml
     type: http
   geolocation-!cn:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
     path: ./ruleset/geolocation-!cn.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   cn_ip:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml
     path: ./ruleset/cn_ip.yaml
     behavior: ipcidr
     interval: 86400
@@ -150,7 +150,7 @@ rule-providers:
     format: yaml
     type: http
   google_ip:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
     path: ./ruleset/google_ip.yaml
     behavior: ipcidr
     interval: 86400
@@ -185,7 +185,7 @@ rule-providers:
     format: yaml
     type: http
   openai:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/6otho/Yaml-PaKo/refs/heads/main/allAi.yaml
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Yaml-PaKo/refs/heads/main/allAi.yaml
     path: ./ruleset/openai.yaml
     behavior: classical
     interval: 86400
@@ -214,7 +214,7 @@ rule-providers:
     type: http
   dns_leak:
     type: http
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/Rule/Prevent_DNS_Leaks.list
+    url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/Rule/Prevent_DNS_Leaks.list
     path: ./ruleset/dns_leak.yaml
     behavior: classical
     interval: 86400
@@ -228,10 +228,10 @@ rule-providers:
     type: http
 
 proxy-groups:
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/02ProxySoftLogo/Loon.png
-    include-all: true
-    name: 手動選擇
+  - name: 手動選擇
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/02ProxySoftLogo/Loon.png
+    include-all: true
     max-failed-times: 3
     proxies:
       - 日本自動
@@ -243,17 +243,17 @@ proxy-groups:
       - 自動選擇
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(2).png
+  - name: 自動選擇
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(2).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    name: 自動選擇
-    type: url-test
     interval: 300
     max-failed-times: 3
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/icons/apps/ChatGPT4.png
-    name: 智能工具
+  - name: 智能工具
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/icons/apps/ChatGPT4.png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -266,9 +266,9 @@ proxy-groups:
       - 自動選擇
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
-    name: 電報聊天
+  - name: 電報聊天
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -281,9 +281,9 @@ proxy-groups:
       - 香港自動
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/google(2).png
-    name: 谷歌搜索
+  - name: 谷歌搜索
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/google(2).png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -296,9 +296,9 @@ proxy-groups:
       - 台灣自動
       - 全球手動
 
-  - icon: https://gh-proxy.com/raw.githubusercontent.com/Orz-3/mini/master/Color/Spotify.png
-    name: 聲田音樂
+  - name: 聲田音樂
     type: select
+    icon: https://gh-proxy.com/raw.githubusercontent.com/Orz-3/mini/master/Color/Spotify.png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -311,9 +311,9 @@ proxy-groups:
       - 台灣自動
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/netflix(old).png
-    name: 奈飛電影
+  - name: 奈飛電影
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/netflix(old).png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -326,9 +326,23 @@ proxy-groups:
       - 台灣自動
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/tiktok(1).png
-    name: 外區抖音
+  - name: 外區抖音
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/tiktok(1).png
+    interval: 300
+    max-failed-times: 3
+    proxies:
+      - 手動選擇
+      - 香港自動
+      - 新國自動
+      - 日本自動
+      - 美國自動
+      - 韓國自動
+      - 全球手动
+
+  - name: 油管軟件
+    type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/youtube(3).png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -340,23 +354,9 @@ proxy-groups:
       - 韓國自動
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/youtube(3).png
-    name: 油管軟件
+  - name: 游戲軟件
     type: select
-    interval: 300
-    max-failed-times: 3
-    proxies:
-      - 手動選擇
-      - 香港自動
-      - 新國自動
-      - 日本自動
-      - 美國自動
-      - 韓國自動
-      - 全球手動
-
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/game(3).png
-    name: 游戲軟件
-    type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/game(3).png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -369,9 +369,9 @@ proxy-groups:
       - 台灣自動
       - 全球手動
 
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/China_Map.png
-    name: 中國直連
+  - name: 中國直連
     type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/China_Map.png
     interval: 300
     max-failed-times: 3
     proxies:
@@ -384,84 +384,84 @@ proxy-groups:
       - 台灣自動
       - 全球手動
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Hongkong.png
+  - name: 香港自動
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Hongkong.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?:\b(香港|HK|HKG|Hong\s*Kong)\b|🇭🇰)
-    name: 香港自動
-    type: url-test
     interval: 300
     lazy: false
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
 
-  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png
+  - name: 台灣自動
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?:台湾|台灣|臺灣|\b(TW|TWN|Taiwan)\b|🇨🇳)
-    name: 台灣自動
-    type: url-test
     interval: 300
     lazy: false
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/singapore(1).png
+  - name: 新國自動
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/singapore(1).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?:\b(新加坡|Singapore|SGP)\b|🇸🇬)
-    name: 新國自動
-    type: url-test
     interval: 300
     lazy: false
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Japan(3).png
+  - name: 日本自動
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Japan(3).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?:\b(日本|Japan|JPN)\b|🇯🇵)
-    name: 日本自動
-    type: url-test
     interval: 300
     lazy: false
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/US.png
+  - name: 美國自動
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?:\b(美國|USA|United\s*States|US)\b|🇺🇸)
-    name: 美國自動
-    type: url-test
     interval: 300
     lazy: false
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Korea.png
+  - name: 韓國自動
+    type: url-test
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Korea.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)(?:\b(韓國|South\s*Korea|KOR)\b|🇰🇷)
-    name: 韓國自動
-    type: url-test
     interval: 300
     lazy: false
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
 
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/EuropeanUnion(1).png
+  - name: 全球手動
+    type: select
+    icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/EuropeanUnion(1).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美國|USA|United\s*States|US|香港|HK|HKG|韓國|South\s*Korea|KOR|台湾|台灣|臺灣|TW|Taiwan)).+$
-    name: 全球手動
-    type: select
     interval: 300
     max-failed-times: 3 
  
@@ -483,7 +483,7 @@ rules:
   - "DOMAIN-SUFFIX,subr.v5oo.eu.org,手動選擇"
   - "DOMAIN-SUFFIX,gemini.google.com,智能工具"
   - "DOMAIN-SUFFIX,douyin.com,DIRECT"
-  - "RULE-SET,douyin_domain,中國直连"
+  - "RULE-SET,douyin_domain,中國直連"
   - "DOMAIN,domainname,手動選擇"
   - "RULE-SET,Spotify_domain,聲田音樂"
   - "RULE-SET,youtube_domain,油管軟件"
@@ -503,7 +503,7 @@ rules:
   - "RULE-SET,telegram_ip,電報聊天"
   - "RULE-SET,private,手動選擇"
   - "RULE-SET,netflix_domain,奈飛電影"
-  - "RULE-SET,emby_domain,奈飞电影"
+  - "RULE-SET,emby_domain,奈飛電影"
   - "RULE-SET,bing,谷歌搜索"
   - "RULE-SET,steam,游戲軟件"
   - "RULE-SET,geolocation-!cn,手動選擇"
