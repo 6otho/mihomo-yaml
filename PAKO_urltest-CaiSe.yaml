@@ -4,6 +4,7 @@ metadata:
   updated: "2025-06"
 owner: "PAKO"
 note: "urltest-CaiSe-icon"
+
 mixed-port: 7897
 allow-lan: true
 mode: rule
@@ -17,18 +18,20 @@ external-controller: 127.0.0.1:9090
 tcp-concurrent: true
 enable-process: true
 find-process-mode: strict
-# global-client-fingerprint: chrome
 keep-alive-interval: 15
 geo-auto-update: true
 geo-update-interval: 24
+
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
   mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
   asn: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+
 profile:
   store-selected: true
   store-fake-ip: true
+
 tun:
   enable: false
   device: ClashVergeREV
@@ -39,19 +42,21 @@ tun:
     - "tcp://any:53"
   auto-route: true
   auto-detect-interface: true
+
 dns:
   enable: true
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - 114.114.114.114
-    - system
   fake-ip-filter:
-    - "*"
     - "+.lan"
     - "connect.rom.miui.com"
     - "+.miwifi.com"
@@ -61,14 +66,11 @@ dns:
     - "+.cfprefer1.xyz"
     - "+.wetab.link"
     - "+.tyasaka.xyz"
-    # QQ
     - "localhost.ptlogin2.qq.com"
     - "localhost.sec.qq.com"
-    # WeChat
     - "localhost.work.weixin.qq.com"
     - "+.weixin.qq.com"
     - "+.wechat.com"
-    # Windows
     - "time.windows.com"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
@@ -148,7 +150,7 @@ rule-providers:
     format: yaml
     type: http
   google_ip:
-    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml
+    url: https://gh.iknn.eu.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.yaml
     path: ./ruleset/google_ip.yaml
     behavior: ipcidr
     interval: 86400
@@ -226,7 +228,6 @@ rule-providers:
     type: http
 
 proxy-groups:
-  #- icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/loonxsss.png
   - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/02ProxySoftLogo/Loon.png
     include-all: true
     name: 手動選擇
@@ -241,6 +242,7 @@ proxy-groups:
       - 台灣自動
       - 自動選擇
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/lightning(2).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -248,6 +250,7 @@ proxy-groups:
     type: url-test
     interval: 300
     max-failed-times: 3
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/fmz200/wool_scripts/refs/heads/main/icons/apps/ChatGPT4.png
     name: 智能工具
     type: select
@@ -262,6 +265,7 @@ proxy-groups:
       - 手動選擇
       - 自動選擇
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
     name: 電報聊天
     type: select
@@ -276,6 +280,7 @@ proxy-groups:
       - 台灣自動
       - 香港自動
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/google(2).png
     name: 谷歌搜索
     type: select
@@ -290,6 +295,7 @@ proxy-groups:
       - 韓國自動
       - 台灣自動
       - 全球手動
+
   - icon: https://gh-proxy.com/raw.githubusercontent.com/Orz-3/mini/master/Color/Spotify.png
     name: 聲田音樂
     type: select
@@ -304,6 +310,7 @@ proxy-groups:
       - 韓國自動
       - 台灣自動
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/netflix(old).png
     name: 奈飛電影
     type: select
@@ -318,6 +325,7 @@ proxy-groups:
       - 韓國自動
       - 台灣自動
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/tiktok(1).png
     name: 外區抖音
     type: select
@@ -331,6 +339,7 @@ proxy-groups:
       - 美國自動
       - 韓國自動
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/04ProxySoft/youtube(3).png
     name: 油管軟件
     type: select
@@ -344,6 +353,7 @@ proxy-groups:
       - 美國自動
       - 韓國自動
       - 全球手動
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/05icon/game(3).png
     name: 游戲軟件
     type: select
@@ -358,7 +368,8 @@ proxy-groups:
       - 韓國自動
       - 台灣自動
       - 全球手動
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/taiwan(1).png
+
+  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/6otho/Loon_tool/refs/heads/main/icon/China_Map.png
     name: 中國直連
     type: select
     interval: 300
@@ -384,10 +395,11 @@ proxy-groups:
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
-  - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/taiwan(3).png
+
+  - icon: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)(?:\b(台湾|TaiWan|TW)\b|🇹🇼)
+    filter: (?i)(?:台湾|台灣|臺灣|\b(TW|TWN|Taiwan)\b|🇨🇳)
     name: 台灣自動
     type: url-test
     interval: 300
@@ -395,6 +407,7 @@ proxy-groups:
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/singapore(1).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -406,6 +419,7 @@ proxy-groups:
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Japan(3).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -417,6 +431,7 @@ proxy-groups:
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/US.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -428,6 +443,7 @@ proxy-groups:
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/Korea.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
@@ -439,17 +455,17 @@ proxy-groups:
     max-failed-times: 3
     tolerance: 50
     url: https://www.gstatic.com/generate_204
+
   - icon: https://gh.iknn.eu.org/https://raw.githubusercontent.com/lige47/QuanX-icon-rule/refs/heads/main/icon/01Country/EuropeanUnion(1).png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    filter: (?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美國|USA|United\s*States|US|香港|HK|HKG|韓國|South\s*Korea|KOR)).+$
+    filter: (?i)^(?!.*(?:新加坡|Singapore|SGP|日本|Japan|JPN|美國|USA|United\s*States|US|香港|HK|HKG|韓國|South\s*Korea|KOR|台湾|台灣|臺灣|TW|Taiwan)).+$
     name: 全球手動
     type: select
     interval: 300
-    max-failed-times: 3
+    max-failed-times: 3 
  
 rules:
-  # emby自用域名
   - "DOMAIN-SUFFIX,shsiis.cloudfisher.cc,手動選擇"
   - "DOMAIN-SUFFIX,emby.zn.al,手動選擇"
   - "DOMAIN-SUFFIX,lite.saturdayvideo.top,手動選擇"
@@ -467,7 +483,7 @@ rules:
   - "DOMAIN-SUFFIX,subr.v5oo.eu.org,手動選擇"
   - "DOMAIN-SUFFIX,gemini.google.com,智能工具"
   - "DOMAIN-SUFFIX,douyin.com,DIRECT"
-  - "RULE-SET,douyin_domain,中國直連"
+  - "RULE-SET,douyin_domain,中國直连"
   - "DOMAIN,domainname,手動選擇"
   - "RULE-SET,Spotify_domain,聲田音樂"
   - "RULE-SET,youtube_domain,油管軟件"
@@ -487,11 +503,11 @@ rules:
   - "RULE-SET,telegram_ip,電報聊天"
   - "RULE-SET,private,手動選擇"
   - "RULE-SET,netflix_domain,奈飛電影"
-  - "RULE-SET,emby_domain,奈飛電影"
+  - "RULE-SET,emby_domain,奈飞电影"
   - "RULE-SET,bing,谷歌搜索"
   - "RULE-SET,steam,游戲軟件"
   - "RULE-SET,geolocation-!cn,手動選擇"
-  - "RULE-SET,cn_domain,中國直連"
-  - "RULE-SET,cn_ip,中國直連"
+  - "RULE-SET,cn_domain,中國直连"
+  - "RULE-SET,cn_ip,中國直连"
   - "RULE-SET,dns_leak,手動選擇"
   - "MATCH,手動選擇"
