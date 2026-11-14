@@ -480,6 +480,8 @@ rules:
   - "DOMAIN,fandai.ikuu.cc.cd,DIRECT"
   - "DOMAIN,emos.ikuu.cc.cd,DIRECT"
   - "DOMAIN,emos.idaa.eu.org,DIRECT"
+  - "DOMAIN-SUFFIX,github.com,US AUTO"
+  
 
   - "DOMAIN-KEYWORD,bytedance,MAINLAND"
   - "DOMAIN-KEYWORD,byteimg,MAINLAND"
