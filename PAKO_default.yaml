@@ -1,22 +1,14 @@
 # PAKO
-metadata:
-  version: "2025.06"
-  updated: "2025-11-20"
-  owner: "PAKO"
-  note: "urltest"
 
 mixed-port: 7897
 allow-lan: true
 mode: rule
 global-ua: clash-verge/v2.2.3
-geodata-mode: true
-geodata-loader: standard
 unified-delay: true
 log-level: warning
 ipv6: true
 external-controller: 127.0.0.1:9090
 tcp-concurrent: true
-enable-process: true
 find-process-mode: strict
 keep-alive-interval: 15
 geo-auto-update: true
@@ -49,7 +41,6 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
-  skip-cert-verify: true
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -109,7 +100,7 @@ rule-providers:
   douyin_domain:
     url: https://gh.ikuu.eu.org/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.yaml
     path: ./ruleset/douyin_domain.yaml
-    behavior: classical
+    behavior: domain
     interval: 86400
     format: yaml
     type: http
